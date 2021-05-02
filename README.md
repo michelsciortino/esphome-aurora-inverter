@@ -3,7 +3,7 @@
 This project aims the integration between Power-One (ABB) Aurora Inverters and [ESPHome](https://esphome.io/index.html) using an ESP8266/ESP32 board.
 
 The communication runs over the RS485 interface of the Inverter using a [TTL-to-RS485 moudule](https://www.bizkit.ru/en/2019/02/21/12563/).
-The module is attached to the ESP board using the pins declared in [InverterMonitor.h](./InverterMonitor.h:10):
+The module is attached to the ESP board using the pins declared in [InverterMonitor.h](./InverterMonitor.h#L10):
 
     #define RX 14               //GPIO14
     #define TX 27               //GPIO27
@@ -35,7 +35,7 @@ This Inverter Monitor exploits the communication library to expose some of the a
 
 > **_NOTE:_**  `power_in_total` is the sum of `power_in_1` and `power_in_2` values.
 
-More sensors can be created based on the [DSP_VALUE_TYPE](./ABBAuroraEnums.h:5) enum values.
+More sensors can be created based on the [DSP_VALUE_TYPE](./ABBAuroraEnums.h#L5) enum values.
 
 An additional text_sensor named `connection_status` is exposed to monitor the connection between the ESP and the inverter.
 <br/><br/>
