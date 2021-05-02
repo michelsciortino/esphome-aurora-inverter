@@ -5,12 +5,12 @@ using namespace esphome;
 using namespace text_sensor;
 using namespace sensor;
 
-#define LED 2
+#define LED 2               //GPIO02, the ESP32 internal led
 
-#define RX 14
-#define TX 27
-#define INVERTER_ADDRESS 2
-#define TX_CONTROL_GPIO 26
+#define RX 14               //GPIO14
+#define TX 27               //GPIO27
+#define INVERTER_ADDRESS 2  //Default address; this can be modified on the inverter settings menu
+#define TX_CONTROL_GPIO 26  //GPIO26
 
 #define CONNECTED "CONNECTED"
 #define DISCONNECTED "DISCONNECTED"
