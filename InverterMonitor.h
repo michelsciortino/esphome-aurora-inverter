@@ -9,8 +9,8 @@ using namespace sensor;
 
 #define RX 14               //GPIO14
 #define TX 27               //GPIO27
-#define INVERTER_ADDRESS 2  //Default address; this can be modified on the inverter settings menu
 #define TX_CONTROL_GPIO 26  //GPIO26
+#define INVERTER_ADDRESS 2  //Default address; this can be modified on the inverter settings menu
 
 #define CONNECTED "CONNECTED"
 #define DISCONNECTED "DISCONNECTED"
