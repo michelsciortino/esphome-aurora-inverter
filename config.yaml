@@ -1,0 +1,142 @@
+esphome:
+  name: inverter
+  platform: ESP32
+  board: esp32doit-devkit-v1
+  includes:
+    - ABBAuroraStrings.cpp
+    - ABBAuroraStrings.h
+    - ABBAuroraEnums.h
+    - ABBAurora.cpp
+    - ABBAurora.h
+    - InverterMonitor.h
+
+wifi:
+  ssid: SSID
+  password: ""
+
+captive_portal:
+logger:
+api:
+ota:
+
+sensor:
+  - platform: custom
+    lambda: |-
+      auto monitor = InverterMonitor::get_instance();
+      App.register_component(monitor);
+      App.register_sensor(monitor->v_in_1);
+      App.register_sensor(monitor->v_in_2);
+      App.register_sensor(monitor->i_in_1);
+      App.register_sensor(monitor->i_in_2);
+      App.register_sensor(monitor->power_in_1);
+      App.register_sensor(monitor->power_in_2);
+      App.register_sensor(monitor->power_in_total);
+      App.register_sensor(monitor->power_peak_today);
+      App.register_sensor(monitor->power_peak_max);
+      App.register_sensor(monitor->temperature_inverter);
+      App.register_sensor(monitor->temperature_booster);
+      App.register_sensor(monitor->cumulated_energy_today);
+      App.register_sensor(monitor->cumulated_energy_week);
+      App.register_sensor(monitor->cumulated_energy_month);
+      App.register_sensor(monitor->cumulated_energy_year);
+      App.register_sensor(monitor->cumulated_energy_total);
+
+      return {
+        monitor->v_in_1,
+        monitor->v_in_2,
+        monitor->i_in_1,
+        monitor->i_in_2,
+        monitor->power_in_1,
+        monitor->power_in_2,
+        monitor->power_in_total,
+        monitor->power_peak_today,
+        monitor->power_peak_max,
+        monitor->temperature_inverter,
+        monitor->temperature_booster,
+        monitor->cumulated_energy_today,
+        monitor->cumulated_energy_week,
+        monitor->cumulated_energy_month,
+        monitor->cumulated_energy_year,
+        monitor->cumulated_energy_total
+      };
+    sensors: 
+      #Voltage
+      - name: v_in_1
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:lightning-bolt-outline"
+      - name: v_in_2
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:lightning-bolt-outline"
+      #Current
+      - name: i_in_1
+        unit_of_measurement: A
+        accuracy_decimals: 2
+        icon: "mdi:current-ac"
+      - name: i_in_2
+        unit_of_measurement: A
+        accuracy_decimals: 2
+        icon: "mdi:current-ac"
+      #Power
+      - name: power_in_1
+        unit_of_measurement: W
+        accuracy_decimals: 0
+        icon: "mdi:solar-power"
+      - name: power_in_2
+        unit_of_measurement: W
+        accuracy_decimals: 0
+        icon: "mdi:solar-power"
+      - name: power_in_total
+        unit_of_measurement: W
+        accuracy_decimals: 0
+        icon: "mdi:solar-power"
+      - name: power_peak_today
+        unit_of_measurement: W
+        accuracy_decimals: 0
+        icon: "mdi:solar-power"
+      - name: power_peak_max
+        unit_of_measurement: W
+        accuracy_decimals: 0
+        icon: "mdi:solar-power"
+      #Temperatures
+      - name: inverter_temp
+        unit_of_measurement: "°C"
+        accuracy_decimals: 2
+        icon: "mdi:thermometer"
+      - name: booster_temp
+        unit_of_measurement: "°C"
+        accuracy_decimals: 2
+        icon: "mdi:thermometer"
+      #Energy
+      - name: cumulated_energy_today
+        unit_of_measurement: "Wh"
+        accuracy_decimals: 0
+        icon: "mdi:car-battery"
+      - name: cumulated_energy_week
+        unit_of_measurement: "Wh"
+        accuracy_decimals: 0
+        icon: "mdi:car-battery"
+      - name: cumulated_energy_month
+        unit_of_measurement: "Wh"
+        accuracy_decimals: 0
+        icon: "mdi:car-battery"
+      - name: cumulated_energy_year
+        unit_of_measurement: "Wh"
+        accuracy_decimals: 0
+        icon: "mdi:car-battery"
+      - name: cumulated_energy_total
+        unit_of_measurement: "Wh"
+        accuracy_decimals: 0
+        icon: "mdi:car-battery"
+
+text_sensor:
+  - platform: custom
+    lambda: |-
+      auto monitor = InverterMonitor::get_instance();
+      App.register_text_sensor(monitor->connection_status);
+      return { monitor->connection_status };
+    text_sensors: 
+      #Status
+      - name: connection_status
+        icon: "mdi:connection"
