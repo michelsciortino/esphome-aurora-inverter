@@ -2,6 +2,8 @@
 
 This project aims the integration between Power-One (ABB) Aurora Inverters and [ESPHome](https://esphome.io/index.html) using an ESP8266/ESP32 board.
 
+![preview](home_assistant.png)
+
 The communication runs over the RS485 interface of the Inverter using a [TTL-to-RS485 moudule](https://www.bizkit.ru/en/2019/02/21/12563/).
 The module is attached to the ESP board using the pins declared in [InverterMonitor.h](./InverterMonitor.h#L10):
 
