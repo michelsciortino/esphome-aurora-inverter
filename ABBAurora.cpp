@@ -19,7 +19,15 @@ void ABBAurora::setup(HardwareSerial &hardwareSerial, byte RXGpioPin, byte TXGpi
     digitalWrite(TXPinControl, LOW);
 
     serial = &hardwareSerial;
+#if defined(USE_ESP32)
     serial->begin(19200, SERIAL_8N1, RXGpioPin, TXGpioPin, false, 500);
+#elif defined(USE_ESP8266)
+    serial->begin(19200, SERIAL_8N1, SERIAL_FULL);
+    if (RXGpioPin == 13 && TXGpioPin == 15) {
+        // Use alternate pins on Serial
+        serial->swap();
+    }
+#endif
 }
 
 void ABBAurora::clearData(byte *data, byte len)
