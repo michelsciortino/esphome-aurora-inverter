@@ -5,12 +5,37 @@ using namespace esphome;
 using namespace text_sensor;
 using namespace sensor;
 
+#if defined(USE_ESP32)
 #define LED 2               //GPIO02, the ESP32 internal led
-
 #define RX 14               //GPIO14
 #define TX 27               //GPIO27
 #define TX_CONTROL_GPIO 26  //GPIO26
+#define INVERTER_MONITOR_SERIAL Serial2
+
+#elif defined(USE_ESP8266)
+#define LED LED_BUILTIN
+// On esp8266 UART0 *must* use GPIO (1, 3) OR GPIO (15, 13)
+// Alternate pins GPIO (15, 13) are not connected to USB-UART
+#define RX 13              // GPI13, D7, UART0 alt RX
+#define TX 15              // GPI15, D8, UART0 alt TX
+#define TX_CONTROL_GPIO 12 // GPIO12, D6 on nodeMCU and d1 mini
+#define INVERTER_MONITOR_SERIAL Serial
+
+#else
+#error Unsupported device
+
+#endif
+
 #define INVERTER_ADDRESS 2  //Default address; this can be modified on the inverter settings menu
+
+
+#ifdef USE_ESP8266
+// Check UART pins are compatible
+#if !((TX == 1 && RX == 3) || (TX == 15 && RX == 13))
+#error Unsupported UART pin configuration for esp8266
+#endif
+#endif
+
 
 #define CONNECTED "CONNECTED"
 #define DISCONNECTED "DISCONNECTED"
@@ -57,7 +82,7 @@ public:
     ESP_LOGD(TAG, "Setupping");
     pinMode(LED, OUTPUT);
     led_state = LOW;
-    ABBAurora::setup(Serial2, RX, TX, TX_CONTROL_GPIO);
+    ABBAurora::setup(INVERTER_MONITOR_SERIAL, RX, TX, TX_CONTROL_GPIO);
     inverter = new ABBAurora(INVERTER_ADDRESS);
     connection_status->publish_state(DISCONNECTED);
   }
