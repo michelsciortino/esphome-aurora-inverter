@@ -65,70 +65,102 @@ sensor:
         unit_of_measurement: V
         accuracy_decimals: 2
         icon: "mdi:lightning-bolt-outline"
+        device_class: voltage
+        state_class: measurement
       - name: v_in_2
         unit_of_measurement: V
         accuracy_decimals: 2
         icon: "mdi:lightning-bolt-outline"
+        device_class: voltage
+        state_class: measurement
       #Current
       - name: i_in_1
         unit_of_measurement: A
         accuracy_decimals: 2
         icon: "mdi:current-ac"
+        device_class: current
+        state_class: measurement
       - name: i_in_2
         unit_of_measurement: A
         accuracy_decimals: 2
         icon: "mdi:current-ac"
+        device_class: current
+        state_class: measurement
       #Power
       - name: power_in_1
         unit_of_measurement: W
         accuracy_decimals: 0
         icon: "mdi:solar-power"
+        device_class: power
+        state_class: measurement
       - name: power_in_2
         unit_of_measurement: W
         accuracy_decimals: 0
         icon: "mdi:solar-power"
+        device_class: power
+        state_class: measurement
       - name: power_in_total
         unit_of_measurement: W
         accuracy_decimals: 0
         icon: "mdi:solar-power"
+        device_class: power
+        state_class: measurement
       - name: power_peak_today
         unit_of_measurement: W
         accuracy_decimals: 0
         icon: "mdi:solar-power"
+        device_class: power
+        state_class: measurement
       - name: power_peak_max
         unit_of_measurement: W
         accuracy_decimals: 0
         icon: "mdi:solar-power"
+        device_class: power
+        state_class: measurement
       #Temperatures
       - name: inverter_temp
         unit_of_measurement: "°C"
         accuracy_decimals: 2
         icon: "mdi:thermometer"
+        device_class: temperature
+        state_class: measurement
       - name: booster_temp
         unit_of_measurement: "°C"
         accuracy_decimals: 2
         icon: "mdi:thermometer"
+        device_class: temperature
+        state_class: measurement
       #Energy
       - name: cumulated_energy_today
         unit_of_measurement: "Wh"
         accuracy_decimals: 0
         icon: "mdi:car-battery"
+        device_class: energy
+        state_class: total_increasing
       - name: cumulated_energy_week
         unit_of_measurement: "Wh"
         accuracy_decimals: 0
         icon: "mdi:car-battery"
+        device_class: energy
+        state_class: total_increasing
       - name: cumulated_energy_month
         unit_of_measurement: "Wh"
         accuracy_decimals: 0
         icon: "mdi:car-battery"
+        device_class: energy
+        state_class: total_increasing
       - name: cumulated_energy_year
         unit_of_measurement: "Wh"
         accuracy_decimals: 0
         icon: "mdi:car-battery"
+        device_class: energy
+        state_class: total_increasing
       - name: cumulated_energy_total
         unit_of_measurement: "Wh"
         accuracy_decimals: 0
         icon: "mdi:car-battery"
+        device_class: energy
+        state_class: total_increasing
 
 text_sensor:
   - platform: custom
