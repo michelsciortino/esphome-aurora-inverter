@@ -9,7 +9,9 @@ esphome:
     - ABBAurora.cpp
     - ABBAurora.h
     - InverterMonitor.h
-
+  libraries:
+    - "Wire"
+    
 wifi:
   ssid: SSID
   password: ""
