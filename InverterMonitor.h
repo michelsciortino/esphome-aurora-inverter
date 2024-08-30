@@ -78,7 +78,7 @@ public:
 
   void setup() override
   {
-    ESP_LOGD(TAG, "Setupping");
+    ESP_LOGD(TAG, "Setting up");
     pinMode(LED, OUTPUT);
     ABBAurora::setup(INVERTER_MONITOR_SERIAL, RX, TX, TX_CONTROL_GPIO);
     inverter = new ABBAurora(INVERTER_ADDRESS);
@@ -183,7 +183,7 @@ public:
         connection = 0;
         connection_status->publish_state(DISCONNECTED);
       }
-      ESP_LOGD(TAG, "Inverter not conntected");
+      ESP_LOGD(TAG, "Inverter not connected");
     }
   }
 
