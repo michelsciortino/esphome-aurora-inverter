@@ -51,7 +51,6 @@ protected:
 
 private:
   ABBAurora *inverter;
-  bool led_state;
   uint8_t connection = 0;
 
 public:
@@ -81,7 +80,6 @@ public:
   {
     ESP_LOGD(TAG, "Setupping");
     pinMode(LED, OUTPUT);
-    led_state = LOW;
     ABBAurora::setup(INVERTER_MONITOR_SERIAL, RX, TX, TX_CONTROL_GPIO);
     inverter = new ABBAurora(INVERTER_ADDRESS);
     connection_status->publish_state(DISCONNECTED);
@@ -191,18 +189,12 @@ public:
 
   void turn_led_on()
   {
-    if (led_state)
-      return;
-    led_state = HIGH;
-    digitalWrite(LED, led_state);
+    digitalWrite(LED, HIGH);
   }
 
   void turn_led_off()
   {
-    if (!led_state)
-      return;
-    led_state = LOW;
-    digitalWrite(LED, led_state);
+    digitalWrite(LED, LOW);
   }
 };
 
