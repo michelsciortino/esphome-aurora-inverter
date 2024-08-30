@@ -46,7 +46,7 @@ class InverterMonitor : public PollingComponent
 {
 
 protected:
-  InverterMonitor() : PollingComponent(15000) {}
+  InverterMonitor() : PollingComponent(5000) {}
   static InverterMonitor *instance_;
 
 private:
