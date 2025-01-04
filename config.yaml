@@ -42,6 +42,46 @@ sensor:
       App.register_sensor(monitor->cumulated_energy_month);
       App.register_sensor(monitor->cumulated_energy_year);
       App.register_sensor(monitor->cumulated_energy_total);
+      App.register_sensor(monitor->grid_voltage);
+      App.register_sensor(monitor->grid_current);
+      App.register_sensor(monitor->grid_power);
+      App.register_sensor(monitor->frequency);
+      App.register_sensor(monitor->v_bulk);
+      App.register_sensor(monitor->i_leak_dc_dc);
+      App.register_sensor(monitor->i_leak_inverter);
+      App.register_sensor(monitor->dc_dc_grid_voltage);
+      App.register_sensor(monitor->dc_dc_grid_frequency);
+      App.register_sensor(monitor->isolation_resistance);
+      App.register_sensor(monitor->dc_dc_v_bulk);
+      App.register_sensor(monitor->average_grid_voltage);
+      App.register_sensor(monitor->v_bulk_mid);
+      App.register_sensor(monitor->grid_voltage_neutral);
+      App.register_sensor(monitor->wind_generator_frequency);
+      App.register_sensor(monitor->grid_voltage_neutral_phase);
+      App.register_sensor(monitor->grid_current_phase_r);
+      App.register_sensor(monitor->grid_current_phase_s);
+      App.register_sensor(monitor->grid_current_phase_t);
+      App.register_sensor(monitor->frequency_phase_r);
+      App.register_sensor(monitor->frequency_phase_s);
+      App.register_sensor(monitor->frequency_phase_t);
+      App.register_sensor(monitor->v_bulk_positive);
+      App.register_sensor(monitor->v_bulk_negative);
+      App.register_sensor(monitor->temperature_supervisor);
+      App.register_sensor(monitor->temperature_alim);
+      App.register_sensor(monitor->temperature_heat_sink);
+      App.register_sensor(monitor->temperature_1);
+      App.register_sensor(monitor->temperature_2);
+      App.register_sensor(monitor->temperature_3);
+      App.register_sensor(monitor->fan_speed_1);
+      App.register_sensor(monitor->fan_speed_2);
+      App.register_sensor(monitor->fan_speed_3);
+      App.register_sensor(monitor->fan_speed_4);
+      App.register_sensor(monitor->fan_speed_5);
+      App.register_sensor(monitor->power_saturation_limit);
+      App.register_sensor(monitor->v_panel_micro);
+      App.register_sensor(monitor->grid_voltage_phase_r);
+      App.register_sensor(monitor->grid_voltage_phase_s);
+      App.register_sensor(monitor->grid_voltage_phase_t);
 
       return {
         monitor->v_in_1,
@@ -59,110 +99,478 @@ sensor:
         monitor->cumulated_energy_week,
         monitor->cumulated_energy_month,
         monitor->cumulated_energy_year,
-        monitor->cumulated_energy_total
+        monitor->cumulated_energy_total,
+        monitor->grid_voltage,
+        monitor->grid_current,
+        monitor->grid_power,
+        monitor->frequency,
+        monitor->v_bulk,
+        monitor->i_leak_dc_dc,
+        monitor->i_leak_inverter,
+        monitor->dc_dc_grid_voltage,
+        monitor->dc_dc_grid_frequency,
+        monitor->isolation_resistance,
+        monitor->dc_dc_v_bulk,
+        monitor->average_grid_voltage,
+        monitor->v_bulk_mid,
+        monitor->grid_voltage_neutral,
+        monitor->wind_generator_frequency,
+        monitor->grid_voltage_neutral_phase,
+        monitor->grid_current_phase_r,
+        monitor->grid_current_phase_s,
+        monitor->grid_current_phase_t,
+        monitor->frequency_phase_r,
+        monitor->frequency_phase_s,
+        monitor->frequency_phase_t,
+        monitor->v_bulk_positive,
+        monitor->v_bulk_negative,
+        monitor->temperature_supervisor,
+        monitor->temperature_alim,
+        monitor->temperature_heat_sink,
+        monitor->temperature_1,
+        monitor->temperature_2,
+        monitor->temperature_3,
+        monitor->fan_speed_1,
+        monitor->fan_speed_2,
+        monitor->fan_speed_3,
+        monitor->fan_speed_4,
+        monitor->fan_speed_5,
+        monitor->power_saturation_limit,
+        monitor->v_panel_micro,
+        monitor->grid_voltage_phase_r,
+        monitor->grid_voltage_phase_s,
       };
-    sensors: 
-      #Voltage
+    sensors:
       - name: v_in_1
+        id: v_in_1
         unit_of_measurement: V
         accuracy_decimals: 2
         icon: "mdi:lightning-bolt-outline"
         device_class: voltage
         state_class: measurement
+
       - name: v_in_2
+        id: v_in_2
         unit_of_measurement: V
         accuracy_decimals: 2
         icon: "mdi:lightning-bolt-outline"
         device_class: voltage
         state_class: measurement
-      #Current
+
       - name: i_in_1
+        id: i_in_1
         unit_of_measurement: A
         accuracy_decimals: 2
         icon: "mdi:current-ac"
         device_class: current
         state_class: measurement
+
       - name: i_in_2
+        id: i_in_2
         unit_of_measurement: A
         accuracy_decimals: 2
         icon: "mdi:current-ac"
         device_class: current
         state_class: measurement
-      #Power
+
       - name: power_in_1
+        id: power_in_1
         unit_of_measurement: W
         accuracy_decimals: 0
         icon: "mdi:solar-power"
         device_class: power
         state_class: measurement
+
       - name: power_in_2
+        id: power_in_2
         unit_of_measurement: W
         accuracy_decimals: 0
         icon: "mdi:solar-power"
         device_class: power
         state_class: measurement
+
       - name: power_in_total
+        id: power_in_total
         unit_of_measurement: W
         accuracy_decimals: 0
         icon: "mdi:solar-power"
         device_class: power
         state_class: measurement
+
       - name: power_peak_today
+        id: power_peak_today
         unit_of_measurement: W
         accuracy_decimals: 0
         icon: "mdi:solar-power"
         device_class: power
         state_class: measurement
+
       - name: power_peak_max
+        id: power_peak_max
         unit_of_measurement: W
         accuracy_decimals: 0
         icon: "mdi:solar-power"
         device_class: power
         state_class: measurement
-      #Temperatures
+
       - name: inverter_temp
+        id: inverter_temp
         unit_of_measurement: "°C"
         accuracy_decimals: 2
         icon: "mdi:thermometer"
         device_class: temperature
         state_class: measurement
+
       - name: booster_temp
+        id: booster_temp
         unit_of_measurement: "°C"
         accuracy_decimals: 2
         icon: "mdi:thermometer"
         device_class: temperature
         state_class: measurement
-      #Energy
+
       - name: cumulated_energy_today
+        id: cumulated_energy_today
         unit_of_measurement: "Wh"
         accuracy_decimals: 0
         icon: "mdi:car-battery"
         device_class: energy
         state_class: total_increasing
+
       - name: cumulated_energy_week
+        id: cumulated_energy_week
         unit_of_measurement: "Wh"
         accuracy_decimals: 0
         icon: "mdi:car-battery"
         device_class: energy
         state_class: total_increasing
+
       - name: cumulated_energy_month
+        id: cumulated_energy_month
         unit_of_measurement: "Wh"
         accuracy_decimals: 0
         icon: "mdi:car-battery"
         device_class: energy
         state_class: total_increasing
+
       - name: cumulated_energy_year
+        id: cumulated_energy_year
         unit_of_measurement: "Wh"
         accuracy_decimals: 0
         icon: "mdi:car-battery"
         device_class: energy
         state_class: total_increasing
+
       - name: cumulated_energy_total
+        id: cumulated_energy_total
         unit_of_measurement: "Wh"
         accuracy_decimals: 0
         icon: "mdi:car-battery"
         device_class: energy
         state_class: total_increasing
+
+      - name: Grid Voltage
+        id: grid_voltage
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:flash"
+        device_class: voltage
+        state_class: measurement
+
+      - name: Grid Current
+        id: grid_current
+        unit_of_measurement: A
+        accuracy_decimals: 2
+        icon: "mdi:current-ac"
+        device_class: current
+        state_class: measurement
+
+      - name: Grid Power
+        id: grid_power
+        unit_of_measurement: W
+        accuracy_decimals: 0
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+
+      - name: Frequency
+        id: frequency
+        unit_of_measurement: Hz
+        accuracy_decimals: 2
+        icon: "mdi:sine-wave"
+        device_class: frequency
+        state_class: measurement
+
+      - name: Bulk Voltage
+        id: v_bulk
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:flash"
+        device_class: voltage
+        state_class: measurement
+
+      - name: DC-DC Grid Voltage
+        id: dc_dc_grid_voltage
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:flash"
+        device_class: voltage
+        state_class: measurement
+
+      - name: DC-DC Grid Frequency
+        id: dc_dc_grid_frequency
+        unit_of_measurement: Hz
+        accuracy_decimals: 2
+        icon: "mdi:sine-wave"
+        device_class: frequency
+        state_class: measurement
+
+      - name: Isolation Resistance
+        id: isolation_resistance
+        unit_of_measurement: Ohm
+        accuracy_decimals: 2
+        icon: "mdi:resistor"
+        device_class: voltage
+        state_class: measurement
+
+      - name: DC-DC V Bulk
+        id: dc_dc_v_bulk
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:flash"
+        device_class: voltage
+        state_class: measurement
+
+      - name: Average Grid Voltage
+        id: average_grid_voltage
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:flash"
+        device_class: voltage
+        state_class: measurement
+
+      - name: Bulk Mid Voltage
+        id: v_bulk_mid
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:flash"
+        device_class: voltage
+        state_class: measurement
+
+      - name: Grid Voltage Neutral
+        id: grid_voltage_neutral
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:flash"
+        device_class: voltage
+        state_class: measurement
+
+      - name: Wind Generator Frequency
+        id: wind_generator_frequency
+        unit_of_measurement: Hz
+        accuracy_decimals: 2
+        icon: "mdi:sine-wave"
+        device_class: frequency
+        state_class: measurement
+
+      - name: Grid Voltage Neutral Phase
+        id: grid_voltage_neutral_phase
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:flash"
+        device_class: voltage
+        state_class: measurement
+
+      - name: Grid Current Phase R
+        id: grid_current_phase_r
+        unit_of_measurement: A
+        accuracy_decimals: 2
+        icon: "mdi:current-ac"
+        device_class: current
+        state_class: measurement
+
+      - name: Grid Current Phase S
+        id: grid_current_phase_s
+        unit_of_measurement: A
+        accuracy_decimals: 2
+        icon: "mdi:current-ac"
+        device_class: current
+        state_class: measurement
+
+      - name: Grid Current Phase T
+        id: grid_current_phase_t
+        unit_of_measurement: A
+        accuracy_decimals: 2
+        icon: "mdi:current-ac"
+        device_class: current
+        state_class: measurement
+
+      - name: Frequency Phase R
+        id: frequency_phase_r
+        unit_of_measurement: Hz
+        accuracy_decimals: 2
+        icon: "mdi:sine-wave"
+        device_class: frequency
+        state_class: measurement
+
+      - name: Frequency Phase S
+        id: frequency_phase_s
+        unit_of_measurement: Hz
+        accuracy_decimals: 2
+        icon: "mdi:sine-wave"
+        device_class: frequency
+        state_class: measurement
+
+      - name: Frequency Phase T
+        id: frequency_phase_t
+        unit_of_measurement: Hz
+        accuracy_decimals: 2
+        icon: "mdi:sine-wave"
+        device_class: frequency
+        state_class: measurement
+
+      - name: Bulk Voltage Positive
+        id: v_bulk_positive
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:flash"
+        device_class: voltage
+        state_class: measurement
+
+      - name: Bulk Voltage Negative
+        id: v_bulk_negative
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:flash"
+        device_class: voltage
+
+      - name: Temperature Supervisor
+        id: temperature_supervisor
+        unit_of_measurement: "°C"
+        accuracy_decimals: 2
+        icon: "mdi:thermometer"
+        device_class: temperature
+        state_class: measurement
+
+      - name: Temperature Alim
+        id: temperature_alim
+        unit_of_measurement: "°C"
+        accuracy_decimals: 2
+        icon: "mdi:thermometer"
+        device_class: temperature
+        state_class: measurement
+
+      - name: Temperature Heat Sink
+        id: temperature_heat_sink
+        unit_of_measurement: "°C"
+        accuracy_decimals: 2
+        icon: "mdi:thermometer"
+        device_class: temperature
+        state_class: measurement
+
+      - name: Temperature 1
+        id: temperature_1
+        unit_of_measurement: "°C"
+        accuracy_decimals: 2
+        icon: "mdi:thermometer"
+        device_class: temperature
+        state_class: measurement
+
+      - name: Temperature 2
+        id: temperature_2
+        unit_of_measurement: "°C"
+        accuracy_decimals: 2
+        icon: "mdi:thermometer"
+        device_class: temperature
+        state_class: measurement
+
+      - name: Temperature 3
+        id: temperature_3
+        unit_of_measurement: "°C"
+        accuracy_decimals: 2
+        icon: "mdi:thermometer"
+        device_class: temperature
+        state_class: measurement
+
+      - name: Fan Speed 1
+        id: fan_speed_1
+        unit_of_measurement: RPM
+        accuracy_decimals: 0
+        icon: "mdi:fan"
+        device_class: speed
+        state_class: measurement
+
+      - name: Fan Speed 2
+        id: fan_speed_2
+        unit_of_measurement: RPM
+        accuracy_decimals: 0
+        icon: "mdi:fan"
+        device_class: speed
+        state_class: measurement
+
+      - name: Fan Speed 3
+        id: fan_speed_3
+        unit_of_measurement: RPM
+        accuracy_decimals: 0
+        icon: "mdi:fan"
+        device_class: speed
+        state_class: measurement
+
+      - name: Fan Speed 4
+        id: fan_speed_4
+        unit_of_measurement: RPM
+        accuracy_decimals: 0
+        icon: "mdi:fan"
+        device_class: speed
+        state_class: measurement
+
+      - name: Fan Speed 5
+        id: fan_speed_5
+        unit_of_measurement: RPM
+        accuracy_decimals: 0
+        icon: "mdi:fan"
+        device_class: speed
+        state_class: measurement
+
+      - name: Power Saturation Limit
+        id: power_saturation_limit
+        unit_of_measurement: W
+        accuracy_decimals: 0
+        icon: "mdi:flash"
+        device_class: power
+        state_class: measurement
+
+      - name: Panel Micro Voltage
+        id: v_panel_micro
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:flash"
+        device_class: voltage
+        state_class: measurement
+
+      - name: Grid Voltage Phase R
+        id: grid_voltage_phase_r
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:flash"
+        device_class: voltage
+        state_class: measurement
+
+      - name: Grid Voltage Phase S
+        id: grid_voltage_phase_s
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:flash"
+        device_class: voltage
+        state_class: measurement
+
+      - name: Grid Voltage Phase T
+        id: grid_voltage_phase_t
+        unit_of_measurement: V
+        accuracy_decimals: 2
+        icon: "mdi:flash"
+        device_class: voltage
+        state_class: measurement
 
 text_sensor:
   - platform: custom
